@@ -20,7 +20,7 @@ template<> CDynList<char>::operator char*() const {
 }
 
 inline void String::buildFromCStr(const char* str) {
-	int num = strlen(str);
+	int num = (int) strlen(str);
 	m_iReservedLength = num+1;
 	m_array = new char[num+1];
 	m_iReserveBuffer = (int) (num * 1.3);
@@ -108,7 +108,7 @@ String String::operator+(const char * str) {
 	String copy = *this;
 	
 	int reservedBack = reservedLength() - m_iEndIndex;
-	int otherLength = strlen(str);
+	int otherLength = (int) strlen(str);
 	if (otherLength >= reservedBack) {
 		copy.reserve(otherLength + m_iReserveBuffer);
 	}
@@ -120,7 +120,7 @@ String String::operator+(const char * str) {
 		
 String& String::operator +=(const char* str) {
 	int reservedBack = reservedLength() - m_iEndIndex;
-	int otherLength = strlen(str);
+	int otherLength = (int) strlen(str);
 	if (otherLength >= reservedBack) {
 		this->reserve(otherLength + m_iReserveBuffer);
 	}

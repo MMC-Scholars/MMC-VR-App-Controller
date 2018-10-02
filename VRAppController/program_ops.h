@@ -2,6 +2,7 @@
 #define PROGRAM_OPS_H
 
 #include "Types/String.h"
+#include "Types/CMap.hpp"
 #include "Types/Types.h"
 
 extern CDynList<String> g_aProgramNames;
@@ -21,7 +22,12 @@ void registerProgram(const String& name, const String& path);
 // Prints all programs in an indexed list of their names and paths
 void printProgramList();
 
-// Given an index, runs the corresponding program and waits until that program terminates.
-void runProgramByIndex(uint8 index);
+// Given a name, runs the corresponding program and, if bWait, waits until that program terminates.
+void runProgramByName(const String& name, bool bWait = true);
+
+// Reads from the Office-generated file which stores the name of the next program to run.
+// Returns the name of the program to run, or returns empty string if there is no
+// program to run.
+String nextProgramName();
 
 #endif //PROGRAM_OPS_H
