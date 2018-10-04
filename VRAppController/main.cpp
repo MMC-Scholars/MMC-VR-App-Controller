@@ -7,13 +7,7 @@
 #include "stdio.h"
 #include "Windows.h"
 
-//How long, in seconds, to wait for SteamVR to open before first opening the office
-#define STEAMVR_WAITTIME 12.f
 
-#define APP_LIST_FILENAME "vr_apps_list.dat"
-
-#define NAME_STEAMVR	"STEAMVR"
-#define NAME_OFFICE		"OFFICE"
 
 int main(int argc, const char* argv[]) {
 

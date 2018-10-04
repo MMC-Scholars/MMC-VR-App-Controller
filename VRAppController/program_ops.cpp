@@ -34,6 +34,15 @@ bool fileExists(const char* pszPath) {
 	return result;
 }
 
+
+// Returns the size of the file, in bytes
+uint64 fileSize(FILE* pFile) {
+	fseek(pFile, 0, SEEK_END); // seek to end of file
+	uint64 size = ftell(pFile); // get current file pointer
+	fseek(pFile, 0, SEEK_SET); // seek back to beginning of file
+	return size;
+}
+
 // Registers a program, if the program exists at the given path
 void registerProgram(const String& name, const String& path) {
 	g_mVRApps.add(name, path);
@@ -57,6 +66,6 @@ void runProgramByName(const String& name, bool bWait) {
 // Reads from the Office-generated file which stores the name of the next program to run.
 // Returns the name of the program to run, or returns empty string if there is no
 // program to run.
-String nextProgramName() {
-
+void nextProgramName(String& dest) {
+	//TODO implement
 }

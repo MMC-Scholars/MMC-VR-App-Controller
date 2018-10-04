@@ -84,7 +84,11 @@ public:
 	
 	String& operator /=(const String& other);
 	
-	/*operator char*();*/
+	/**
+	 * @brief Given a file and a size of that file, splits the file by line into the given destination.
+	 * Newline characters are consumed.
+	 */
+	static void fromFile(FILE* pFile, uint64 fileSize, CDynList<String>& dest);
 };
 
 //inline int strlen(const String& str) { return str.length(); }

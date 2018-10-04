@@ -1,6 +1,7 @@
 #include "String.h"
 #include "string"
 #include "Character.h"
+#include "Types.h"
 
 /**
  * @brief Measures length of null-terminated character string.
@@ -138,4 +139,38 @@ String& String::operator /=(const String& other) {
 		this->push('/');
 		
 	return (*this) += other;
+}
+
+inline bool isNewLine(char c) {
+	return c == '\n';
+}
+
+void String::fromFile(FILE* pFile, uint64 fileSize, CDynList<String>& dest) {
+	
+	//first, clear and reserve
+	dest.flush();
+
+	//estimate reservation based on filesize.
+	//assume average of 30 line length
+	const int ESTIMATED_LINE_LENGTH = 30;
+	dest.reserve(fileSize / ESTIMATED_LINE_LENGTH + 1);
+
+	//setup loop
+	char c = getc(pFile);
+	if (c != EOF && !isNewLine(c)) dest.push(""); dest.getRef(0).reserve(ESTIMATED_LINE_LENGTH);
+
+	while (c != EOF) {
+		if (isNewLine(c)) {
+			//trim previous, setup next string
+			dest.getPtrEnd(0)->trim();
+			dest.push("");
+			dest.getPtrEnd(0)->reserve(ESTIMATED_LINE_LENGTH);
+		}
+		else {
+			//otherwise push into current line
+			dest.getPtrEnd(0)->push(c);
+		}
+		c = getc(pFile);
+	}
+	dest.trim();
 }
