@@ -117,18 +117,9 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="program_ops.cpp" />
-    <ClCompile Include="Types\Character.cpp" />
-    <ClCompile Include="Types\String.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="program_ops.h" />
-    <ClInclude Include="Types\CDynList.h" />
-    <ClInclude Include="Types\CDynList.hpp" />
-    <ClInclude Include="Types\Character.h" />
-    <ClInclude Include="Types\Clamps.h" />
-    <ClInclude Include="Types\CMap.h" />
-    <ClInclude Include="Types\CMap.hpp" />
-    <ClInclude Include="Types\String.h" />
     <ClInclude Include="Types\Types.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

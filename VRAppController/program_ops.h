@@ -1,12 +1,15 @@
 #ifndef PROGRAM_OPS_H
 #define PROGRAM_OPS_H
 
-#include "Types/String.h"
-#include "Types/CMap.hpp"
 #include "Types/Types.h"
+#include "stdio.h"
+#include "Windows.h"
+
+//Increase this number to increase the amount of programs this app supports.
+#define NUM_MAX_PROGRAMS 64
 
 //How long, in seconds, to wait for SteamVR to open before first opening the office
-#define STEAMVR_WAITTIME 12.f
+#define STEAMVR_WAITTIME 12
 
 #define APP_LIST_FILENAME "vr_apps_list.dat"
 
@@ -25,17 +28,21 @@ bool fileExists(const char* pszPath);
 uint64 fileSize(FILE*);
 
 // Registers a program, if the program exists at the given path
-void registerProgram(const String& name, const String& path);
+void registerProgram(const char* pszName, const char* pszPath);
 
 // Prints all programs in an indexed list of their names and paths
 void printProgramList();
 
 // Given a name, runs the corresponding program and, if bWait, waits until that program terminates.
-void runProgramByName(const String& name, bool bWait = true);
+// Returns true on success, false on failure
+bool runProgramByName(const char* pszName, bool bWait = true);
 
 // Reads from the Office-generated file which stores the name of the next program to run.
 // Returns the name of the program to run, or returns empty string if there is no
 // program to run.
-void nextProgramName(String&);
+void nextProgramName(char dest[MAX_PATH + 1]);
+
+// Sleeps for the given number of seconds, counting down in the terminal
+void sleepCountdown(uint8 numSeconds);
 
 #endif //PROGRAM_OPS_H

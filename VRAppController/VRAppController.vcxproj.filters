@@ -21,42 +21,15 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Types\String.cpp">
-      <Filter>Source Files\Types</Filter>
-    </ClCompile>
-    <ClCompile Include="Types\Character.cpp">
-      <Filter>Source Files\Types</Filter>
-    </ClCompile>
     <ClCompile Include="program_ops.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Types\CDynList.h">
-      <Filter>Source Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Types\CDynList.hpp">
-      <Filter>Source Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Types\String.h">
-      <Filter>Source Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Types\Character.h">
-      <Filter>Source Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Types\Clamps.h">
-      <Filter>Source Files\Types</Filter>
-    </ClInclude>
     <ClInclude Include="program_ops.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Types\Types.h">
-      <Filter>Source Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Types\CMap.hpp">
-      <Filter>Source Files\Types</Filter>
-    </ClInclude>
-    <ClInclude Include="Types\CMap.h">
       <Filter>Source Files\Types</Filter>
     </ClInclude>
   </ItemGroup>
