@@ -12,12 +12,12 @@
 
 int main(int argc, const char* argv[]) {
 
-	if (!fileExists(APP_LIST_FILENAME)) {
-		printf("Failed to open file %s\n", APP_LIST_FILENAME);
+	if (!fileExists(FILENAME_APP_LIST)) {
+		printf("Failed to open file %s\n", FILENAME_APP_LIST);
 		system("pause");
 		return 1;
 	}
-	if (!loadProgramsFromFile(APP_LIST_FILENAME)) {
+	if (!loadProgramsFromFile(FILENAME_APP_LIST)) {
 		system("pause");
 		return 1;
 	}
@@ -30,6 +30,16 @@ int main(int argc, const char* argv[]) {
 	}
 	printf("Starting the office in... ");
 	sleepCountdown(STEAMVR_WAITTIME);
+	runProgramByName(NAME_OFFICE);
+
+	char nextGameName[MAX_PATH + 1];
+	loadNextProgramName(nextGameName);
+	while (nextGameName[0]) {
+		runProgramByName(nextGameName);
+		runProgramByName(NAME_OFFICE);
+		loadNextProgramName(nextGameName);
+	}
+
 	runProgramByName("BOWLING");
 	system("pause");
 

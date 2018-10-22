@@ -11,7 +11,8 @@
 //How long, in seconds, to wait for SteamVR to open before first opening the office
 #define STEAMVR_WAITTIME 12
 
-#define APP_LIST_FILENAME "vr_apps_list.dat"
+#define FILENAME_APP_LIST "vr_apps_list.dat"
+#define FILENAME_APP_NEXT "vr_app_next.tmp"
 
 #define NAME_STEAMVR	"STEAMVR"
 #define NAME_OFFICE		"OFFICE"
@@ -40,7 +41,7 @@ bool runProgramByName(const char* pszName, bool bWait = true);
 // Reads from the Office-generated file which stores the name of the next program to run.
 // Returns the name of the program to run, or returns empty string if there is no
 // program to run.
-void nextProgramName(char dest[MAX_PATH + 1]);
+void loadNextProgramName(char dest[MAX_PATH + 1]);
 
 // Sleeps for the given number of seconds, counting down in the terminal
 void sleepCountdown(uint8 numSeconds);

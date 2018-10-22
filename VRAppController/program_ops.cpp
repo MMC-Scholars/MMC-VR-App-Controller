@@ -189,9 +189,23 @@ bool runProgramByName(const char* pszName, bool bWait) {
 // Reads from the Office-generated file which stores the name of the next program to run.
 // Returns the name of the program to run, or returns empty string if there is no
 // program to run.
-void nextProgramName(char dest[MAX_PATH + 1]) {
-	//TODO implement
-	
+void loadNextProgramName(char dest[MAX_PATH + 1]) {
+	//zero out memory
+	memset(dest, 0, sizeof(dest));
+
+	FILE* pFile = fopen(FILENAME_APP_NEXT, "r");
+	if (pFile) {
+
+		//load from file into character buffer
+		char c = getc(pFile);
+		int i = 0;
+		while (c != EOF && i < sizeof(dest)) {
+			dest[i++] = c;
+			c = getc(pFile);
+		}
+
+		fclose(pFile);
+	}
 }
 
 // Sleeps for the given number of seconds, counting down in the terminal
