@@ -15,6 +15,10 @@ inline bool isWhitespace(char c) {
 	return c == ' ' || c == '\t';
 }
 
+inline bool isSlash(char c) {
+	return c == '/' || c == '\\' ;
+}
+
 // Given a path to a formated file containing a list of program-path pairs, loads the 
 // into our registered lists.
 // Returns false if file cannot be opened, true otherwise.
@@ -150,9 +154,8 @@ void printProgramList() {
 	}
 }
 
-// Given a name, runs the corresponding program and, if bWait, waits until that program terminates.
-// Returns true on success, false on failure
-bool runProgramByName(const char* pszName, bool bWait) {
+// Returns the path to the program, if it exists
+const char* findProgramByName(const char* pszName) {
 	//get path
 	const char* pszPath = NULL;
 	for (int i = 0; i < g_iNumPrograms; i++) {
@@ -160,6 +163,13 @@ bool runProgramByName(const char* pszName, bool bWait) {
 			pszPath = g_aPrograms[i * 2 + 1];
 		}
 	}
+	return pszPath;
+}
+
+// Given a name, runs the corresponding program and, if bWait, waits until that program terminates.
+// Returns true on success, false on failure
+bool runProgramByName(const char* pszName, bool bWait) {
+	const char* pszPath = findProgramByName(pszName);
 
 	if (!pszPath) {
 		printf("ERROR: Failed to find path for program named %s\n", pszName);
@@ -191,20 +201,41 @@ bool runProgramByName(const char* pszName, bool bWait) {
 // program to run.
 void loadNextProgramName(char dest[MAX_PATH + 1]) {
 	//zero out memory
-	memset(dest, 0, sizeof(dest));
+	memset(dest, 0, MAX_PATH + 1);
 
-	FILE* pFile = fopen(FILENAME_APP_NEXT, "r");
+	//we need to find the path to the office folder,
+	//because that's where the temporary file is
+	//we'll temporarily use dest as a buffer to help us
+	//open the file
+	const char* src = findProgramByName(NAME_OFFICE);
+	strcpy_s(dest, MAX_PATH + 1, findProgramByName(NAME_OFFICE));
+
+	//find the index of the last slash character
+	uint64 i = strlen(dest) - 1;
+	while (!isSlash(dest[i])) i--;
+
+	//inject our filename onto that path
+	i++; //so we keep the slash character
+	strcpy_s(dest + i, MAX_PATH + 1 - i, FILENAME_APP_NEXT);
+	
+	FILE* pFile = fopen(dest, "r");
+	//zero out memory
+	memset(dest, 0, MAX_PATH + 1);
+
 	if (pFile) {
 
 		//load from file into character buffer
 		char c = getc(pFile);
 		int i = 0;
-		while (c != EOF && i < sizeof(dest)) {
+		while (c != EOF && i < MAX_PATH + 1) {
 			dest[i++] = c;
 			c = getc(pFile);
 		}
 
 		fclose(pFile);
+	}
+	else {
+		printf("ERROR: failed to open temporary file \"%s\" in Office directory\n", FILENAME_APP_NEXT);
 	}
 }
 

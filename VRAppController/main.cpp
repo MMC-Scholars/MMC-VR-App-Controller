@@ -23,6 +23,7 @@ int main(int argc, const char* argv[]) {
 	}
 
 	printf("\n\n\n\n\n");
+
 	//Start up SteamVR and wait a short time for it to get set up
 	if (!runProgramByName(NAME_STEAMVR, false)) {
 		printf("ERROR: Failed to start SteamVR\n");
@@ -40,7 +41,6 @@ int main(int argc, const char* argv[]) {
 		loadNextProgramName(nextGameName);
 	}
 
-	runProgramByName("BOWLING");
 	system("pause");
 
 	//Now run the office

@@ -34,6 +34,9 @@ void registerProgram(const char* pszName, const char* pszPath);
 // Prints all programs in an indexed list of their names and paths
 void printProgramList();
 
+// Returns the path to the program, if it exists
+const char* findProgramByName(const char* pszName);
+
 // Given a name, runs the corresponding program and, if bWait, waits until that program terminates.
 // Returns true on success, false on failure
 bool runProgramByName(const char* pszName, bool bWait = true);
