@@ -1,5 +1,2 @@
-﻿  program_ops.cpp
-c:\users\public\documents\public projects\mmc_office_recreation\vrappcontroller - copy\vrappcontroller\program_ops.cpp(219): warning C4244: 'argument': conversion from 'uint64' to 'rsize_t', possible loss of data
-  main.cpp
-  Generating Code...
-  VRAppController.vcxproj -> C:\Users\Public\Documents\Public Projects\MMC_Office_Recreation\VRAppController - Copy\Debug\VRAppController.exe
+﻿  main.cpp
+  VRAppController.vcxproj -> C:\Users\Public\Documents\Public Projects\MMC_Office_Recreation\VRAppController\Debug\VRAppController.exe

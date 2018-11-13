@@ -35,6 +35,7 @@ int main(int argc, const char* argv[]) {
 
 	char nextGameName[MAX_PATH + 1];
 	loadNextProgramName(nextGameName);
+	
 	while (nextGameName[0]) {
 		runProgramByName(nextGameName);
 		runProgramByName(NAME_OFFICE);
